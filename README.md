@@ -34,3 +34,21 @@ never places a trade.
    visible — ideally a mix of unmitigated, mitigated and breaker blocks.
 4. Drag `OB_Probe` onto that chart. Leave the inputs as they are and click OK.
 5. An alert tells you the file name. Find it under `MQL4\Files\`.
+
+## verify_engine.py / verify_signals.py
+
+Verification harnesses. They port the EA's order-block engine to Python and run
+it against the real probe capture, because there is no MQL4 compiler here.
+
+`verify_engine.py` rebuilds each block's consumed percentage from the NU/U
+rectangle geometry and compares it with the percentage the indicator writes into
+its own label — ground truth I did not produce. All 13 labelled blocks match
+exactly; the only 3 without a label are exactly the 3 the code calls fully eaten.
+
+`verify_signals.py` is the positive control: it walks price paths across the real
+blocks and asserts what **must** fire, not only what must not — a rally producing
+one sell from the correct block at the mid line, a sell-off producing buys from
+two blocks in the right order, a block never firing twice in one cycle, recovery
+suppressing counter-direction signals, and fully consumed blocks staying silent.
+
+Neither harness tests MQL4 syntax. That still needs MetaEditor.

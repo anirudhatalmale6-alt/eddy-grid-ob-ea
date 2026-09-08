@@ -1,8 +1,8 @@
 # Eddy Grid EA — Order Block entry logic (MT4)
 
 Work in progress: replacing the PSAR / support-resistance entry triggers in
-`EddyGridEA` with Order Block triggers, driven by the FXSSI
-**Order Blocks All-in-One** indicator already running on the chart.
+`EddyGridEA` with Order Block triggers, driven by the **Order Block + Void MT4 By TFlab** indicator (TradingFinder)
+already running on the chart.
 
 The client's EA source and the commercial indicator are **not** published here —
 only my own code.

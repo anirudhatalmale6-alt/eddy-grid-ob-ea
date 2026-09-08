@@ -13,7 +13,7 @@
 #property strict
 #property show_inputs
 
-input string IndicatorName  = "OrderBlocks.All-In-One"; // Indicator file name, no .ex4
+input string IndicatorName  = "Order Block + Void MT4 By TFlab"; // Indicator file name, no .ex4
 input bool   ProbeBuffers   = true;                     // Also probe iCustom buffers
 input int    BuffersToTest  = 8;                        // How many buffers to try
 input int    BarsToTest     = 5;                        // Bars to read per buffer

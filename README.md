@@ -52,3 +52,22 @@ two blocks in the right order, a block never firing twice in one cycle, recovery
 suppressing counter-direction signals, and fully consumed blocks staying silent.
 
 Neither harness tests MQL4 syntax. That still needs MetaEditor.
+
+## OB_Probe_MT5.mq5
+
+The MT5 counterpart, written to answer one specific question: does the MT5
+build of the indicator publish its blocks as **buffers**, or only as drawings?
+
+It matters because an EA can read buffers during optimisation, while drawings
+do not exist there at all — MT4 and MT5 both run optimisation without a chart.
+Measured on the MT4 build: buffers 0–7 all empty, so the EA has to read chart
+objects, and that is why Order Block mode cannot be optimised (110 of 110
+passes saw 0 blocks and 0 objects).
+
+The script takes an `iCustom` handle, waits for `BarsCalculated`, then tries
+`CopyBuffer` on 24 slots and reports which carry real values. It also dumps the
+chart objects for comparison with the MT4 capture. Read-only; it never creates,
+moves or deletes anything and never trades.
+
+Run it on an MT5 chart with the indicator attached; the report lands in
+`MQL5\Files\`.
